@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">ShieldBox</string>
+    <string name="vpn_channel_name">ShieldBox VPN</string>
+    <string name="vpn_status_connected">Защищено</string>
+    <string name="vpn_status_connecting">Подключение…</string>
+    <string name="vpn_status_disconnected">Отключено</string>
+    <string name="tab_home">Защита</string>
+    <string name="tab_servers">Серверы</string>
+    <string name="tab_routing">Маршруты</string>
+    <string name="cd_connect_button">Кнопка подключения VPN</string>
+    <string name="cd_country_selector">Выбрать страну сервера</string>
+    <string name="cd_view_config">Открыть конфигурацию sing-box</string>
+    <string name="setting_connect_on_launch_title">Подключаться при запуске</string>
+    <string name="setting_connect_on_launch_subtitle">Автоматически запускать VPN-туннель при открытии приложения</string>
+    <string name="qs_tile_label">ShieldBox VPN</string>
+    <string name="cd_add_server">Добавить сервер или подписку</string>
+    <string name="cd_delete_server">Удалить пользовательский сервер</string>
+    <string name="cd_share_config">Поделиться конфигурацией</string>
+</resources>

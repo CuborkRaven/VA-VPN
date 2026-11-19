@@ -1,0 +1,6 @@
+{
+  "name": "ShieldBox",
+  "description": "Cross-platform DPI-resistant VPN architecture with sing-box (VLESS+Reality, Hysteria 2) and Android client.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

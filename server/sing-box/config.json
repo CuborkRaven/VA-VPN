@@ -1,0 +1,102 @@
+{
+  "log": {
+    "disabled": false,
+    "level": "info",
+    "output": "/var/log/sing-box/sing-box.log",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "local-dns",
+        "type": "udp",
+        "server": "1.1.1.1",
+        "server_port": 53
+      }
+    ],
+    "strategy": "prefer_ipv4"
+  },
+  "inbounds": [
+    {
+      "type": "vless",
+      "tag": "vless-reality-in",
+      "listen": "::",
+      "listen_port": 443,
+      "users": [
+        {
+          "name": "admin-01",
+          "uuid": "REPLACE_WITH_UUID",
+          "flow": "xtls-rprx-vision"
+        }
+      ],
+      "tls": {
+        "enabled": true,
+        "server_name": "www.microsoft.com",
+        "reality": {
+          "enabled": true,
+          "handshake": {
+            "server": "www.microsoft.com",
+            "server_port": 443
+          },
+          "private_key": "REPLACE_WITH_REALITY_PRIVATE_KEY",
+          "short_id": [
+            "REPLACE_WITH_SHORT_ID"
+          ],
+          "max_time_difference": "1m"
+        }
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "hysteria2-in",
+      "listen": "::",
+      "listen_port": 443,
+      "up_mbps": 500,
+      "down_mbps": 500,
+      "ignore_client_bandwidth": false,
+      "users": [
+        {
+          "name": "admin-01",
+          "password": "REPLACE_WITH_HY2_USER_PASSWORD"
+        }
+      ],
+      "obfs": {
+        "type": "salamander",
+        "password": "REPLACE_WITH_SALAMANDER_OBFS_PASSWORD"
+      },
+      "tls": {
+        "enabled": true,
+        "alpn": [
+          "h3"
+        ],
+        "certificate_path": "/etc/sing-box/certs/hy2.crt",
+        "key_path": "/etc/sing-box/certs/hy2.key"
+      },
+      "masquerade": "https://www.microsoft.com"
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "direct",
+      "tag": "direct"
+    }
+  ],
+  "route": {
+    "default_domain_resolver": "local-dns",
+    "rules": [
+      {
+        "action": "sniff"
+      },
+      {
+        "ip_is_private": true,
+        "action": "reject"
+      },
+      {
+        "action": "resolve",
+        "strategy": "prefer_ipv4"
+      }
+    ],
+    "final": "direct",
+    "auto_detect_interface": true
+  }
+}
